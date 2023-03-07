@@ -33,7 +33,7 @@ const boardSchema = new Schema(
             }],
             deadline:{
                 type:Date,
-                default:new Date()
+                
 
             },
             author:{
