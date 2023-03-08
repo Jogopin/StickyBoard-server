@@ -20,6 +20,21 @@ router.post("/boards",(req,res,next)=>{
         })
 })
 
+//Get: Getting all boards
+router.get("/boards",(req,res,next)=>{
+
+    
+    Board.find()
+        .then(responseBoard=>{
+            
+            res.json(responseBoard)
+        })
+        .catch(err=>{
+            console.log(`Error getting the Boards`,err)
+            res.status(500).json(err)
+        })
+})
+
 router.get("/boards/:boardId",(req,res,next)=>{
 
     const {boardId} = req.params
