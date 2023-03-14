@@ -12,41 +12,11 @@ const boardSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref:"User"
         }],
-        notes:[{
-            title:{
-                type:String,
-                trim:true,
-            },
-            description:{
-                type:String,
-                trim:true,
-            },
-            checklist:[{
-                item:{
-                    type:String
-                },
-                isChecked:{
-                    type:Boolean,
-                    default:false,
-                },              
-
-            }],
-            deadline:{
-                type:Date,
-                
-
-            },
-            author:{
-                type: Schema.Types.ObjectId,
-                ref:"User"
-            },            
-            
+        author:{
+            type: Schema.Types.ObjectId,
+            ref:"User"
         },
-        {
-            timestamps:true,
-        }
-    ]
-
+       
     },
     {
         timestamps:true,

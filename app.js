@@ -21,6 +21,9 @@ app.use("/api", indexRoutes);
 const boardRoutes = require("./routes/board.routes")
 app.use("/api", boardRoutes)
 
+const noteRoutes = require("./routes/Note.routes")
+app.use("/api",noteRoutes)
+
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
