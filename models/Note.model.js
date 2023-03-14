@@ -11,7 +11,7 @@ const noteSchema = new Schema(
             trim:true,
         },
         checklist:[{
-            item:{
+            task:{
                 type:String
             },
             isChecked:{

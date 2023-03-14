@@ -45,9 +45,19 @@ router.get("/notes/:boardId",(req,res,next)=>{
         })
 })
 
+//Get: one note
 router.get("/notes/:boardId/:noteId",(req,res,next)=>{
     
     const {boardId, noteId} = req.params
+
+    Note.findById(noteId)
+        .then((responseNote)=>{
+            res.json(responseNote)
+        })
+        .catch(err=>{
+            console.log(`Error getting the note ${noteId} from the board${boardId}`,err)
+            res.status(500).json(err)
+        })
 })
 
 
