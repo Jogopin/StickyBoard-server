@@ -28,6 +28,10 @@ router.post("/notes/:boardId",(req,res,next)=>{
    
 })
 
+
+
+
+
 //Get: get all the notes from a board
 
 router.get("/notes/:boardId",(req,res,next)=>{
@@ -56,6 +60,27 @@ router.get("/notes/:boardId/:noteId",(req,res,next)=>{
         })
         .catch(err=>{
             console.log(`Error getting the note ${noteId} from the board${boardId}`,err)
+            res.status(500).json(err)
+        })
+})
+//Put: update one note
+
+router.put("/notes/:boardId/:noteId",(req,res,next)=>{
+
+    const {boardId, noteId} = req.params
+
+    const {title,description,checklist} = req.body
+
+    const updatedData = {title, description,checklist}
+
+    Note.findByIdAndUpdate(noteId,updatedData,{new:true})
+        .then(responseNote=>{
+
+            console.log("note updated correctly",responseNote)
+            res.json(responseNote)
+        })
+        .catch(err=>{
+            console.log(`Error updating the note ${noteId} from the board${boardId}`,err)
             res.status(500).json(err)
         })
 })
