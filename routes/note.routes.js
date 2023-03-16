@@ -85,6 +85,21 @@ router.put("/notes/:boardId/:noteId",(req,res,next)=>{
         })
 })
 
+// Delete one note
+router.delete("/notes/:boardId/:noteId",(req,res,next)=>{
+    const {boardId,noteId} = req.params
+    
+    Note.findByIdAndDelete(noteId)
+        .then(responseNote=>{
+            console.log(`note ${noteId} was deleted correctly`,responseNote)
+            res.json(responseNote)
+        })
+        .catch(err=>{
+            console.log(`Error deleting the note ${noteId}`)
+            res.status(500).json(err)
+        })
+})
+
 
 
 module.exports = router;
