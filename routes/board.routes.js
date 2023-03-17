@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 
 const Board = require("../models/Board.model")
+const Note = require("../models/Note.model")
 
 
 //Post: creating a new Board
@@ -47,6 +48,27 @@ router.get("/boards/:boardId",(req,res,next)=>{
             console.log(`Error getting the Board ${boardId}`,err)
             res.status(500).json(err)
         })
+})
+
+// Delete: delete the board and all its notes
+router.delete("/boards/:boardId",(req,res,next)=>{
+
+    const {boardId}=req.params
+    
+    Board.findByIdAndDelete(boardId)
+        .then(responseBoard=>{
+            console.log("board deleted")
+            return Note.deleteMany({"board":boardId})
+        })
+        .then(responseNote=>{
+            console.log("notes deleted",responseNote)
+            res.json(responseNote)
+        })
+        .catch(err=>{
+            console.log(`Error deleting the Board ${boardId}`,err)
+            res.status(500).json(err)
+        })
+
 })
 
 // //Post: add a new note
