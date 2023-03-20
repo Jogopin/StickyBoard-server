@@ -50,6 +50,23 @@ router.get("/boards/:boardId",(req,res,next)=>{
         })
 })
 
+router.put(`/boards/:boardId`,(req,res,next)=>{
+
+    const {boardId} = req.params
+
+    const {name} = req.body
+
+    Board.findByIdAndUpdate(boardId,{name})
+        .then(responseBoard=>{
+            console.log(`Board ${boardId} updated correctly`,responseBoard)
+            res.json(responseBoard)
+        })
+        .catch(err=>{
+            console.log(`Error updating the board`,err);
+            res.status(500),json(err)
+        })
+})
+
 // Delete: delete the board and all its notes
 router.delete("/boards/:boardId",(req,res,next)=>{
 
