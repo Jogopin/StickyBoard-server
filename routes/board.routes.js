@@ -54,15 +54,18 @@ router.get("/boards/:boardId",(req,res,next)=>{
 router.delete("/boards/:boardId",(req,res,next)=>{
 
     const {boardId}=req.params
-    
+    let response= {}
+
     Board.findByIdAndDelete(boardId)
         .then(responseBoard=>{
+            response ={responseBoard}
             console.log("board deleted")
             return Note.deleteMany({"board":boardId})
         })
         .then(responseNote=>{
             console.log("notes deleted",responseNote)
-            res.json(responseNote)
+            response = {...response, responseNote}
+            res.json(response)
         })
         .catch(err=>{
             console.log(`Error deleting the Board ${boardId}`,err)
