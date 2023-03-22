@@ -91,42 +91,6 @@ router.delete("/boards/:boardId",(req,res,next)=>{
 
 })
 
-// //Post: add a new note
-// router.post("/boards/:id/notes",(req,res,next)=>{
-
-//     const boardId = req.params.id
-//     const {title,description,checklist,deadline}  = req.body
-//     const newNote = {title,description,checklist,deadline}  
-
-//     Board.findByIdAndUpdate(boardId,{ $push: {notes: newNote}},{new:true})
-//         .then(responseBoard=>{
-//             console.log(`note "${title}" has been created`)
-//             res.json(responseBoard)
-
-//         })
-//         .catch(err=>{
-//             console.log(`Error creating the note ${title}`,err)
-//             res.status(500).json(err)
-//         })
-   
-// })
-
-// //Get: get all the notes from a board
-
-// router.get("/boards/:id/notes",(req,res,next)=>{
-
-//     const boardId = req.params.id
-
-//     Board.findById(boardId)
-//         .then(responseBoard=>{
-//             res.json(responseBoard.notes)
-//         })
-//         .catch(err=>{
-//             console.log(`Error getting the notes from the board${boardId}`,err)
-//             res.status(500).json(err)
-//         })
-// })
-
 
 
 module.exports = router;
